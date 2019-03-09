@@ -46,7 +46,7 @@ router.post('/user-sign-up', function (req, res, next) {
         return res.json({error: false, data: _.omit(plainObject, ['password']), message: 'Registration Successful' });
       })
       .catch(function (err) {
-        console.log(err);
+        console.log('********errr while saving',err);
         if(err.code === 11000){
           return res.json({error : true, message: "Email id already exist."})
         }

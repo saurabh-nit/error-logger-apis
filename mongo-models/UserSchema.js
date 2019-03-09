@@ -6,13 +6,14 @@ let UserProfileSchema  = new mongoose.Schema({
 
   name: {
     type: String,
-    trim: true,
-    text: true,
+    trim: true
   },
   email: {
     type: String,
     trim: true,
-    unique: true
+    unique: true,
+    required: true,
+    index: true
   },
   password: {
     type: String,
@@ -60,4 +61,5 @@ UserProfileSchema.methods.comparePassword = function (pw, cb) {
   });
 };
 
+// UserProfileSchema.index({email: 1}, {unique: true});
 module.exports = mongoose.model('UserProfileModel', UserProfileSchema);
