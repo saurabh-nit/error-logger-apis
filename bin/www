@@ -11,7 +11,6 @@ let socket_constants = require('./socketEvents')
 let ActionsToBind = require('./ActionsToBind').ActionsToBind
 let SocketActions = require('./socketActions')
 
-
 /**
  * Get port from environment and store in Express.
  */
@@ -22,7 +21,6 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
 let server = http.createServer(app);
 let io = require('socket.io')(server)
 app.set('socket', io)

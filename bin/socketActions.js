@@ -8,7 +8,7 @@ module.exports = {
   },
 
   onConnection: async (clientSocket) => {
-    console.log('&&&&&& WHOLE SOCKET:', clientSocket['id']);
+    console.log('Connected Client Socket Id:', clientSocket['id']);
   },
 
   onDisconnect: async (clientSocket) => {

@@ -5,6 +5,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let mongoose = require('mongoose');
 
+
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 
@@ -26,6 +27,16 @@ let app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// CORS Policy
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "POST,GET,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,Authorization,os-version");
+  next();
+});
+
 
 app.use(logger('dev'));
 app.use(express.json());

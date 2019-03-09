@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
 
 let ErrorSchema = new mongoose.Schema({
   message: {
@@ -20,7 +20,16 @@ let ErrorSchema = new mongoose.Schema({
   error: {
     type: String,
     trim: true
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserProfileModel'
+  },
+  app_id: {
+    type: String,
+    trim: true
   }
 });
 
+ErrorSchema.index({ app_id: 1, user_id: 1}, {unique: true, name: "text"});
 module.exports = mongoose.model('ErrorModel', ErrorSchema);

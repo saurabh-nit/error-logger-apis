@@ -16,6 +16,10 @@ let UserProfileSchema  = new Schema({
   password: {
     type: String,
     trim: true
+  },
+  app_id: {
+    type: String,
+    trim: true
   }
 });
 
