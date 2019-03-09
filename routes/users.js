@@ -4,6 +4,8 @@ let UserProfileModel = require('../mongo-models/UserSchema');
 let router = express.Router();
 let jwt =  require("jsonwebtoken");
 let _ =  require("lodash");
+const uuidv1 = require('uuid/v1');
+
 
 
 const JWT_SECRET= "##!%$^67jbsfgbcbHT**()^869wGFSCA"
@@ -58,7 +60,8 @@ router.post('/add-log-in-db', function (req, res) {
     url: req.body.url || '',
     line: req.body.line || '',
     col: req.body.col || '',
-    error: req.body.error || ''
+    error: req.body.error || '',
+    app_id: req.app_id || uuidv1()
   };
 
   let newError = new ErrorModel(data);
