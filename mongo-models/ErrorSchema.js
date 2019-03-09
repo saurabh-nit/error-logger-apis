@@ -18,8 +18,7 @@ let ErrorSchema = new mongoose.Schema({
     trim: true
   },
   error: {
-    type: String,
-    trim: true
+    type: Object,
   },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -31,5 +30,5 @@ let ErrorSchema = new mongoose.Schema({
   }
 });
 
-ErrorSchema.index({ app_id: 1, user_id: 1}, {unique: true, name: "text"});
+ErrorSchema.index({ app_id: 1 }, {unique: true, name: "text"});
 module.exports = mongoose.model('ErrorModel', ErrorSchema);

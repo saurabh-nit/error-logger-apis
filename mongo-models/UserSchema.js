@@ -1,7 +1,8 @@
-import mongoose, {Schema} from "mongoose";
-import bcrypt from "bcrypt-nodejs";
+let mongoose = require("mongoose");
+let bcrypt = require("bcrypt-nodejs");
+const uuidv1 = require('uuid/v1');
 
-let UserProfileSchema  = new Schema({
+let UserProfileSchema  = new mongoose.Schema({
 
   name: {
     type: String,
@@ -40,6 +41,7 @@ UserProfileSchema.pre('save', function (next) {
         }
         // saving actual password as hash
         user.password = hash;
+        user.app_id =  uuidv1()
         next();
       });
     });
@@ -57,4 +59,6 @@ UserProfileSchema.methods.comparePassword = function (pw, cb) {
     cb(null, isMatch);
   });
 };
+
+UserProfileSchema.index({ app_id: 1, email: 1}, {unique: true, name: "text"});
 module.exports = mongoose.model('UserProfileModel', UserProfileSchema);
