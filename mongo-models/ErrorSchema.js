@@ -30,5 +30,4 @@ let ErrorSchema = new mongoose.Schema({
   }
 });
 
-ErrorSchema.index({ app_id: 1 }, {unique: true});
 module.exports = mongoose.model('ErrorModel', ErrorSchema);

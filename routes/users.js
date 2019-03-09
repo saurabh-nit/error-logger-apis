@@ -54,6 +54,50 @@ router.post('/user-sign-up', function (req, res, next) {
       })
 })
 
+router.post('/login-user', async function (req, res, next) {
+
+  console.log('req.body:', req.body);
+  let provided_mail = req.body.email;
+  let provided_password = req.body.password;
+  if(!provided_mail || !provided_password){
+    return res.json({
+      error : true,
+      message: "Email/Password is required"
+    });
+  }
+
+  let user_info = await UserProfileModel.findOne({email: provided_mail});
+  console.log('AFTER IF', user_info);
+
+
+  if(user_info === null){
+    return res.json({
+      error : true,
+      message: "This user does not exist. Try another email"
+    })
+  } else {
+    user_info.comparePassword(provided_password, function(err, isMatch){
+      if (err) {
+        console.log("matching password.......");
+        return res.json({error : true, reason : err});
+      }
+      if(!isMatch) {
+        return res.json({error : true, message: 'You have entered wrong password'})
+      } else {
+        let payload = {
+          _id : user_info._id,
+          name: user_info.name,
+          email: user_info.email
+        };
+        let token = jwt.sign(payload, JWT_SECRET, {
+          expiresIn: 3600*24
+        });
+        return res.json({error : false, auth_token: token, message: "Log in successful"})
+      }
+    })
+  }
+})
+
 router.post('/add-log-in-db', function (req, res) {
   let data = {
     message: req.body.message || '',
