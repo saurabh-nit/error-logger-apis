@@ -38,7 +38,7 @@ let ExecuteBindHandler = (clientSocket) => {
   }
 };
 
-io.set('transports', ['websocket']);
+// io.set('transports', ['websocket']);
 io.on('connection', function(clientSocket){
    console.log('a user connected');
    ExecuteBindHandler(clientSocket);
