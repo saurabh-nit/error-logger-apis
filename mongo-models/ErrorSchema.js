@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 
 let ErrorSchema = new mongoose.Schema({
-  message: {
+  msg: {
     type: String,
     trim: true
   },

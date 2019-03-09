@@ -100,7 +100,7 @@ router.post('/login-user', async function (req, res, next) {
 
 router.post('/add-log-in-db', function (req, res) {
   let data = {
-    message: req.body.message || '',
+    msg: req.body.msg || '',
     url: req.body.url || '',
     line: req.body.line || '',
     col: req.body.col || '',
