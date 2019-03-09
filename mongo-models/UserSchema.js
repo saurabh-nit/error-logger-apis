@@ -60,5 +60,5 @@ UserProfileSchema.methods.comparePassword = function (pw, cb) {
   });
 };
 
-UserProfileSchema.index({ app_id: 1, email: 1}, {unique: true, name: "text"});
+UserProfileSchema.index({email: 1});
 module.exports = mongoose.model('UserProfileModel', UserProfileSchema);
