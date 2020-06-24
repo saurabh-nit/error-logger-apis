@@ -106,7 +106,8 @@ router.post('/add-log-in-db', function (req, res) {
     col: req.body.col || '',
     error: req.body.error || '',
     app_id: req.app_id || uuidv1(),
-    createdAt: new Date()
+    createdAt: new Date(),
+    userAgent: req.body.userAgent || ''
   };
 
   let newError = new ErrorModel(data);

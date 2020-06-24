@@ -31,6 +31,10 @@ let ErrorSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date()
+  },
+  userAgent: {
+    type: String,
+    trim: true
   }
 });
 
