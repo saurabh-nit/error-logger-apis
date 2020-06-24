@@ -17,10 +17,12 @@ let socketMiddleWare = function(req, res, next) {
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
-mongoose.connect('mongodb://dbuser1:dbuser1@ds039281.mlab.com:39281/session', { useNewUrlParser: true }).then(
+const dbUrl = 'mongodb://error-db-user:error-db-user1@ds149124.mlab.com:49124/error-logger-db'
+
+mongoose.connect(dbUrl, { useNewUrlParser: true }).then(
   (db)=> {console.log('Database connected')},
-  (err)=>{console.log('CONNECTION FAILED TO DATABASE, CHECK INTERNET CONNECTION');reject(err);}
-);
+  (err)=>{console.log('CONNECTION FAILED TO DATABASE, CHECK INTERNET CONNECTION');}
+).catch(reason => console.log('REASON:', reason));
 
 let app = express();
 

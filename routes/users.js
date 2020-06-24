@@ -105,7 +105,8 @@ router.post('/add-log-in-db', function (req, res) {
     line: req.body.line || '',
     col: req.body.col || '',
     error: req.body.error || '',
-    app_id: req.app_id || uuidv1()
+    app_id: req.app_id || uuidv1(),
+    createdAt: new Date()
   };
 
   let newError = new ErrorModel(data);
@@ -123,7 +124,7 @@ router.post('/add-log-in-db', function (req, res) {
 });
 
 router.get('/get-all-errors', function (req, res) {
-  ErrorModel.find({}).exec(function (err, data) {
+  ErrorModel.find({}).sort({ createdAt: -1 }).exec(function (err, data) {
     if (err){
       return res.json({code: 'FAILURE', error: err})
     }

@@ -27,6 +27,10 @@ let ErrorSchema = new mongoose.Schema({
   app_id: {
     type: String,
     trim: true
+  },
+  createdAt: {
+    type: Date,
+    default: new Date()
   }
 });
 
